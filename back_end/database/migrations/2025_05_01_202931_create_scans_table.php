@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('certifs', function (Blueprint $table) {
+        Schema::create('scans', function (Blueprint $table) {
             $table->id();
-            $table->string('original_name');
-            $table->string('reference_number');
-            $table->string('processed_path');
-            $table->string('image_path');
-            $table->string('public_url')->nullable();
-            $table->string('image_url')->nullable();
+            $table->string('reference_number')->nullable();
+            $table->string('status'); // valide ou invalide
+            $table->string('certif_name')->nullable();
+            $table->timestamp('scanned_at')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('certifs');
+        Schema::dropIfExists('scans');
     }
 };

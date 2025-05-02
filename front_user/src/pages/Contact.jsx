@@ -24,14 +24,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white space-y-2">
+    <div className="min-h-screen bg-gray-100 space-y-2">
         <Header/>
-      <div className="lg:flex justify-between space-x-3 px-5">
+      <div className="lg:flex justify-between space-x-3 px-5 ">
 
         {/* Formulaire de contact */}
-        <form onSubmit={handleSubmit} className="space-y-4 lg:w-1/2">
+        <form onSubmit={handleSubmit} className="space-y-4 lg:w-1/2 border border-gray-100 rounded p-2">
           <div>
-          <h1 className="text-3xl font-bold text-blue-600 mb-6">Contactez-nous</h1>
+          <h1 className="text-3xl font-bold text-blue-600 text-center mb-6">Contactez-nous</h1><br />
             <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
               Nom
             </label>
@@ -42,7 +42,7 @@ export default function Contact() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-none"
             />
           </div>
           <div>
@@ -56,7 +56,7 @@ export default function Contact() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-none"
             />
           </div>
           <div>
@@ -70,12 +70,12 @@ export default function Contact() {
               onChange={handleChange}
               required
               rows="5"
-              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-none"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="font-bold p-3 bg-[#2E86AB] text-white rounded-lg hover:bg-blue-600 transition duration-300"
+            className="w-full py-3 font-bold bg-[#2E86AB] text-white rounded text-xl"
           >
             Envoyer
           </button>
@@ -86,9 +86,9 @@ export default function Contact() {
         )}
 
         {/* Section FAQ */}
-        <div className="mt-10 w-1/2">
+        <div className="mt-10 w-full border h-128 my-auto p-2">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Questions fréquentes</h2>
-          <div className="space-y-4">
+          <div className="space-y-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-700">
                 Comment puis-je importer un fichier PDF ?

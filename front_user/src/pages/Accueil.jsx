@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import image1 from "../assets/confident-good-looking-outgoing-nice-dark-skinned-curly-haired-female-friend-suggesting-visit-cozy-cafe-pointing-sideways-inviting-come-smiling-broadly-friendly-vibe-holding-hand-waist-casually.jpg";
@@ -8,7 +8,7 @@ import image4 from "../assets/side-view-man-reading-menu-restaurant.jpg";
 import image5 from "../assets/tp204-certificate-05.jpg";
 import image6 from "../assets/tp204-certificate-14.jpg";
 import image7 from "../assets/6976156.jpg";
-import image8 from "../assets/grunge_certified_seal_stamp_rubber_look-fotor-bg-remover-20250408181512.png"
+import image8 from "../assets/grunge_certified_seal_stamp_rubber_look-fotor-bg-remover-20250408181512.png";
 import image9 from "../assets/a.png";
 import image10 from "../assets/a1.png";
 import image11 from "../assets/a2.png";
@@ -17,53 +17,48 @@ import image13 from "../assets/a4.png";
 import image14 from "../assets/a5.png";
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
-// import Footer from "./layout/Footer";
 
 function Accueil() {
-
-    const images = [image1, image2, image3];// Liste des images pour le carousel
+    const images = [image1, image2, image3];
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Défilement automatique des images
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) =>
                 prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
-        }, 3000); // Change d'image toutes les 3 secondes
-
-        return () => clearInterval(interval); // Nettoie l'intervalle lors du démontage du composant
+        }, 3000);
+        return () => clearInterval(interval);
     }, [images.length]);
 
-    const imagesCertif = [image5, image6, image7];// Liste des images pour le carousel
+    const imagesCertif = [image5, image6, image7];
     const [currentIndexCertif, setCurrentIndexCertif] = useState(0);
-    // Défilement automatique des images
 
     useEffect(() => {
         const intervalCertif = setInterval(() => {
             setCurrentIndexCertif((prevIndex) =>
                 prevIndex === imagesCertif.length - 1 ? 0 : prevIndex + 1
             );
-        }, 3000); // Change d'image toutes les 3 secondes
-
-        return () => clearInterval(intervalCertif); // Nettoie l'intervalle lors du démontage du composant
+        }, 3000);
+        return () => clearInterval(intervalCertif);
     }, [imagesCertif.length]);
 
     return (
-        <div className='bg-[#F2F2F2] px-5'>
-            <Header/>
-            <div className="lg:flex block justify-between bg-white shadow-lg space-y-3 mt-10 space-x- px-5 py-5">
-                <div className=" space-y-5 items-center lg:w-1/2">
-                    <p className="text-4xl items-center">Certifiez vos Compétences avec Nous </p>
-                    <p className="items-center">
+        <div className="bg-gray-50">
+            <Header />
+            <div className="lg:flex block justify-between bg-white shadow-lg space-y-6 mt-10 px-8 py-8 rounded-lg">
+                <div className="space-y-6 lg:w-1/2">
+                    <h1 className="text-4xl font-bold text-gray-800">
+                        Certifiez vos Compétences avec Nous
+                    </h1>
+                    <p className="text-gray-600 leading-relaxed">
                         Accélérez votre organisation dans l'économie concurrentielle basée
                         sur les compétences, que vous délivriez des diplômes numériques qui
                         ajoutent de la valeur à l'apprentissage ou que vous prépariez votre
                         personnel à l'avenir avec les compétences dont il a besoin.
                     </p>
                 </div>
-
-                <div className=" h-96 relative">
+                <div className="h-96 relative rounded-lg overflow-hidden shadow-md">
                     <img
                         src={images[currentIndex]}
                         alt={`Slide ${currentIndex + 1}`}
@@ -72,87 +67,93 @@ function Accueil() {
                 </div>
             </div>
 
-            <div className="lg:flex block justify-between w-full bg-[#2E86AB] p-5 shadow-lg space-y-3">
-                <div className="lg:my-auto space-y-16">
-                    <div className="">
-                        <p className="text-2xl text-white">Vérifier l’authenticité de vos Attestations, 
-                        Certifications ou bien d’autres à travers la vérification par QR Cde 
-                        et Numéro de Réference
-                        </p>
-                    </div>
+            <div className="lg:flex block justify-between w-full bg-gradient-to-r from-blue-500 to-blue-700 p-8 shadow-lg space-y-6 rounded-lg mt-10">
+                <div className="lg:my-auto space-y-8 text-white">
+                    <h2 className="text-2xl font-semibold">
+                        Vérifiez l’authenticité de vos Attestations, Certifications ou bien d’autres
+                    </h2>
+                    <p>
+                        Utilisez la vérification par QR Code ou Numéro de Référence pour garantir
+                        l'authenticité de vos documents.
+                    </p>
                     <div className="flex space-x-5">
-                        <button className="bg-white text-[#2E86AB] px-4 py-2 rounded"><Link to="/qrcode">QR Code</Link></button>
-                        <button className="bg-white text-[#2E86AB] px-4 py-2 rounded"><Link to="/ref">N° de Réference</Link></button>
+                        <Link to="/qrcode">
+                            <button className="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition">
+                                QR Code
+                            </button>
+                        </Link>
+                        <Link to="/ref">
+                            <button className="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition">
+                                N° de Référence
+                            </button>
+                        </Link>
                     </div>
                 </div>
-                <img src={image4} alt="" className="rounded lg:w-2/5"/>
+                <img src={image4} alt="" className="rounded-lg lg:w-2/5 shadow-md" />
             </div>
 
-            <div className="space-y-5 py-3">
-                    <p className="text-3xl text-center font-bold">Nos Certifications</p>
-                    <div className=" relative mx-auto lg:w-1/2 ">
+            <div className="space-y-8 py-8 bg-white mt-10 rounded-lg shadow-lg">
+                <h2 className="text-3xl text-center font-bold text-gray-800">Nos Certifications</h2>
+                <div className="relative mx-auto lg:w-1/2 rounded-lg overflow-hidden shadow-md">
+                    <img
+                        src={imagesCertif[currentIndexCertif]}
+                        alt={`Slide ${currentIndexCertif + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-500"
+                    />
+                    <img
+                        src={image8}
+                        alt="Overlay"
+                        className="absolute top-4 right-4 w-24 h-24"
+                    />
+                </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-8 shadow-lg space-y-8 rounded-lg mt-10">
+                <h2 className="text-3xl text-white text-center font-bold">Pourquoi CertifSure ?</h2>
+                <p className="text-white text-center max-w-3xl mx-auto leading-relaxed">
+                    CertifSure est la référence en termes d’authentification de documents avec
+                    plus de 4000 authentifications et une collaboration avec plusieurs entreprises
+                    pour réduire les fraudes.
+                </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-lg shadow-lg mt-10">
+                <h2 className="text-2xl font-bold text-center text-gray-800">Nos Partenaires</h2>
+                <div className="lg:flex block justify-around mt-10 space-y-6 lg:space-y-0">
+                    {[image9, image10, image11, image12, image13, image14].map((img, index) => (
                         <img
-                            src={imagesCertif[currentIndexCertif]}
-                            alt={`Slide ${currentIndexCertif + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-500"
+                            key={index}
+                            src={img}
+                            alt={`Partenaire ${index + 1}`}
+                            className="mx-auto lg:w-32 lg:h-32 rounded-lg shadow-md"
                         />
-
-                       {/* Superposition de l'image 8 */}
-                        <img
-                            src={image8}
-                            alt="Overlay"
-                            className="absolute top-4 right-4 w-32 h-32"
-                        />
-                    </div>
-            </div>
-
-            <div className="bg-[#2E86AB] p-5 shadow-lg space-y-8">
-                <p className="text-3xl text-white text-center ">Pourquoi CertifSure ?</p>
-                <p className="text-white w-1/2 text-center mx-auto">CertifSure est la réference en termes d’authentification 
-                de documments avec plus de 4000 authentification ainsi qu’une collarboration avec 
-                plusieurs entreprises pour 
-                pouvoir faciliter l’authentification et ainsi réduire les fraudes</p>
-            </div>
-
-            <div className="bg-white p-5">
-                <p className="text-2xl font-bold text-center">Nos Partenaires</p>
-                <div className="lg:flex block justify-around mt-10 space-y-2">
-                    <img src={image9} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
-                    <img src={image10} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
-                    <img src={image11} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
-                    <img src={image12} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
-                    <img src={image13} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
-                    <img src={image14} alt="Partenaire 1" className="mx-auto lg:w-32 lg:h-32"/>
+                    ))}
                 </div>
             </div>
 
-
-            <div className="">
-                <p className="text-2xl font-bold text-center py-5">Statistiques</p>
-                <div className="lg:flex block space-y-3 justify-between space-x-3">
-                    <div className="bg-[#2E86AB] p-5 rounded-sm shadow-md space-y-3">
-                        <p className="text-center text-xl font-bold text-white">Nombre d'Attestations</p>
-                        <p className="text-center text-2xl text-white">1000</p>
-                    </div>
-                    <div className=" bg-[#2E86AB] p-5 rounded-sm shadow-md space-y-3">
-                        <p className="text-center text-xl font-bold text-white">Nombre de Certifications</p>
-                        <p className="text-center text-2xl text-white">500</p>
-                    </div>
-                    <div className=" bg-[#2E86AB] p-5 rounded-sm shadow-md space-y-3">
-                        <p className="text-center text-xl font-bold text-white">Nombre de Vérifications</p>
-                        <p className="text-center text-2xl text-white">2000</p>
-                    </div>
-                    <div className=" bg-[#2E86AB] p-5 rounded-sm shadow-md space-y-3">
-                        <p className="text-center text-xl font-bold text-white">Nombre d'Utilisateurs</p>
-                        <p className="text-center text-2xl text-white">1500</p>
-                    </div>
+            <div className="bg-white p-8 rounded-lg shadow-lg mt-10">
+                <h2 className="text-2xl font-bold text-center text-gray-800 py-5">Statistiques</h2>
+                <div className="lg:flex block space-y-6 lg:space-y-0 justify-between space-x-6">
+                    {[
+                        { title: "Nombre d'Attestations", value: 1000 },
+                        { title: "Nombre de Certifications", value: 500 },
+                        { title: "Nombre de Vérifications", value: 2000 },
+                        { title: "Nombre d'Utilisateurs", value: 1500 },
+                    ].map((stat, index) => (
+                        <div
+                            key={index}
+                            className="bg-blue-600 p-6 rounded-lg shadow-md text-white text-center space-y-3"
+                        >
+                            <p className="text-xl font-bold">{stat.title}</p>
+                            <p className="text-2xl">{stat.value}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
 
-            {/* <Footer/> */}
-            <Footer/>
+            <Footer />
         </div>
-    )
+    );
 }
 
-export default Accueil
+export default Accueil;

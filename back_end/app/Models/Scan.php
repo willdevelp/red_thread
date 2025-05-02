@@ -3,21 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\Reference\Reference;
 
 class Scan extends Model
 {
     protected $fillable = [
-        'statut',
-        'certif_id',
+        'reference_number',
+        'status',
+        'certif_name',
+        'scanned_at',
     ];
 
-    protected $with = [
-        'certif',
-    ];
-
-    public function certif(){
-        return $this->hasMany(
-            Certif::class,
-        );
+    public function certif()
+    {
+        return $this->belongsTo(Certif::class, 'certif_id', 'id');
     }
+
 }

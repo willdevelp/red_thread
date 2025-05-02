@@ -1,7 +1,8 @@
 <?php
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\CertifController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'getAuthenticatedUser']);
+Route::middleware('auth:sanctum')->put('/user/update', [UserController::class, 'updateUser']);
 
 // Route::post('/promotion', [PromotionsController::class, 'store']);
 // Route::get('/promotion', [PromotionsController::class, 'index']);
@@ -22,5 +25,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/upload-files', [CertifController::class, 'uploadFiles']);
 Route::get('/upload-files/{reference_number}', [CertifController::class, 'show']);
-Route::get('/download-file/${original_name}', [CertifController::class, 'downloadFile']);
+Route::get('/certifs', [CertifController::class, 'getCertifs']);
+Route::get('/download-file/{reference_number}', [CertifController::class, 'download']);
+
+Route::post('/handle-scan', [CertifController::class, 'handleScan']);
+Route::get('/scans', [ScanController::class, 'getAllScans']);
+Route::get('/scan-stats', [ScanController::class, 'getScanStats']);
 ?>

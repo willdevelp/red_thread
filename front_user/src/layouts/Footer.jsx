@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 function Footer() {
     return (
@@ -8,7 +9,7 @@ function Footer() {
                     {/* Logo & Description */}
                     <div className="mb-6 md:mb-0">
                         <h2 className="text-2xl font-bold mb-2">CertiSure</h2>
-                        <p className="text-gray-400">
+                        <p className="text-white">
                             Vérifiez l'authenticité de vos certifications en ligne.
                         </p>
                     </div>
@@ -19,22 +20,27 @@ function Footer() {
                             <h3 className="text-lg font-semibold mb-4">Liens</h3>
                             <ul className="space-y-2">
                                 <li>
-                                    <Link to="/" className="text-gray-400 hover:text-white">
-                                        
+                                    <Link to="/" className="text-white hover:text-white">
+                                        Accueil
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/qrcode" className="text-gray-400 hover:text-white">
-                                        QR code
+                                    <Link to="/qrcode" className="text-white hover:text-white">
+                                        Qr Code
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/ref" className="text-gray-400 hover:text-white">
+                                    <Link to="/ref" className="text-white hover:text-white">
                                         Numéro de Reference
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/about" className="text-gray-400 hover:text-white">
+                                    <Link to="/contact" className="text-white hover:text-white">
+                                        Contact
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about" className="text-white hover:text-white">
                                         A Propos
                                     </Link>
                                 </li>
@@ -44,12 +50,12 @@ function Footer() {
                             <h3 className="text-lg font-semibold mb-4">Légal</h3>
                             <ul className="space-y-2">
                                 <li>
-                                    <Link to="/privacy" className="text-gray-400 hover:text-white">
+                                    <Link to="/privacy" className="text-white hover:text-white">
                                         Confidentialité
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/terms" className="text-gray-400 hover:text-white">
+                                    <Link to="/terms" className="text-white hover:text-white">
                                         Conditions
                                     </Link>
                                 </li>
@@ -63,31 +69,31 @@ function Footer() {
                             href="https://github.com/votreprojet"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white text-2xl"
+                            className="text-white hover:text-white text-2xl"
                         >
-                        
+                        <FaGithub />
                         </a>
                         <a
                             href="https://linkedin.com/in/votreprofil"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white text-2xl"
+                            className="text-white hover:text-white text-2xl"
                         >
-                            
+                            <FaLinkedin />
                         </a>
                         <a
                             href="https://twitter.com/votrecompte"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-white text-2xl"
+                            className="text-white hover:text-white text-2xl"
                         >
-                            
+                            <FaTwitter />
                         </a>
                     </div>
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <div className="border-t border-gray-700 mt-8 pt-6 text-center text-white">
                     <p>© {new Date().getFullYear()} CertiCheck. Tous droits réservés.</p>
                 </div>
             </div>

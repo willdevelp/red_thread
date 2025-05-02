@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../layouts/Header';
+import Footer from '../layouts/Footer';
 
 function Reference() {
     const [referenceNumber, setReferenceNumber] = useState('');
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false); // Ajout de l'état isLoading
-    const navigate = useNavigate(); // Hook pour rediriger vers une autre page
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true); // Activer le chargement
+        setIsLoading(true);
         try {
             const response = await axios.get(`http://localhost:8000/api/upload-files/${referenceNumber}`);
             setError('');
+            setError('');
             // Rediriger vers la page des résultats avec les données du certificat
             navigate('/certificate-result', { state: { certificate: response.data } });
+            console.log('response.data:', response.data);
         } catch (err) {
             setError('Certificat non trouvé. Vérifiez le numéro de référence.', err);
         } finally {
@@ -24,8 +28,9 @@ function Reference() {
     };
 
     return (
-        <div className="lg:w-1/2 px-5 mx-auto my-auto">
-            <div className="container px-4 py-8 bg-white space-y-5">
+        <div className="w-full bg-gray-100 space-y-24">
+            <Header/>
+            <div className=" p-4 lg:w-1/2 mx-auto space-y-8 bg-white rounded">
                 <h1 className="text-center text-3xl font-bold">Vérifier votre Référence</h1>
                 <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                     <div className="space-y-4">
@@ -45,7 +50,7 @@ function Reference() {
                         </div>
                         <button
                             type="submit"
-                            className="bg-[#2E86AB] hover:bg-blue-600 text-white px-4 py-2 rounded"
+                            className="bg-[#2E86AB] hover:bg-blue-600 text-white px-4 py-2 rounded w-full"
                             disabled={isLoading} // Désactiver le bouton pendant le chargement
                         >
                             {isLoading ? 'Vérification...' : 'Vérifier'}
@@ -55,6 +60,7 @@ function Reference() {
 
                 {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
+            <Footer/>
         </div>
     );
 }

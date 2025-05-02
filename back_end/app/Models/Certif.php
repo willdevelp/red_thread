@@ -10,12 +10,13 @@ class Certif extends Model
         'original_name',
         'reference_number',
         'processed_path',
+        'image_path',
         'public_url',
+        'image_url',
     ];
 
-    public function scan() {
-        return $this->belongsTo(
-            Scan::class,
-        );
+    public function scans()
+    {
+        return $this->hasMany(Scan::class);
     }
 }

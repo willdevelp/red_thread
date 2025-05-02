@@ -72,8 +72,8 @@ function BarChat() {
     };
     return (
         <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Analyse des ventes</h2>
-            <div className="h-72 w-full">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Analyse des scans</h2>
+            <div className="relative h-72 md:h-72 w-full">
                 <Bar options={options} data={data} />
             </div>
             <div className="mt-4 text-sm text-gray-500">

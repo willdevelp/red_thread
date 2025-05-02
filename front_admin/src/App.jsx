@@ -4,9 +4,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import { AuthProvider } from './contexts/AuthContext'
-import ReferenceGenerator from './pages/generation'
 import Certification from './pages/Certification'
-import ViewPDF from './pages/ViewPDF'
+import Profile from './pages/Profile';
 
 function App() {
     return (
@@ -16,9 +15,8 @@ function App() {
                     <Route path="/" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/dashboard" element={<Dashboard/>} />
-                    <Route path="/generation" element={<ReferenceGenerator/>} />
                     <Route path="/certification" element={<Certification/>} />
-                    <Route path="/view-pdf" element={<ViewPDF/>} />
+                    <Route path="/profile" element={<Profile />} />
                 </Routes>
             </AuthProvider>
         </div>
