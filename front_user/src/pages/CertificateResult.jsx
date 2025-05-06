@@ -63,7 +63,7 @@ function CertificateResult() {
 
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                         <a
-                            href={fileUrl}
+                            href={`http://localhost:8000/api/download-file/${certificate.reference_number}`}
                             download={certificate.original_name}
                             className="w-full sm:w-auto px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition duration-300 text-center"
                         >

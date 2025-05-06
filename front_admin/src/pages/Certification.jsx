@@ -7,6 +7,7 @@ export default function Certification() {
     const [files, setFiles] = useState([]);
     const [error, setError] = useState('');
     const [results, setResults] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(''); // État pour la barre de recherche
 
     // Fonction pour récupérer les certificats depuis l'API
     const fetchCertifs = async () => {
@@ -56,9 +57,26 @@ export default function Certification() {
             setResults((prevResults) => [...prevResults, ...response.data.files]);
             setError('');
         } catch (err) {
-            setError(err.response?.data?.message || 'Erreur lors de l’upload.');
+            setError(err.response?.data?.message || 'Erreur lors de l\'upload.');
         }
     };
+
+    const handleDelete = async (referenceNumber) => {
+        try {
+            await axios.delete(`http://localhost:8000/api/delete-file/${referenceNumber}`);
+            // Mettre à jour la liste des fichiers après la suppression
+            setResults(results.filter(file => file.reference_number !== referenceNumber));
+        } catch (err) {
+            setError('Erreur lors de la suppression du fichier.');
+            console.error(err);
+        }
+    };
+
+    // Filtrer les résultats en fonction de la recherche
+    const filteredResults = results.filter((result) =>
+        result.original_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        result.reference_number.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="min-h-screen bg-gray-100 space-y-4">
@@ -86,6 +104,14 @@ export default function Certification() {
                     {results && results.length > 0 && (
                         <div className="mt-6">
                             <h2 className="text-xl font-semibold text-gray-700 mb-4">Résultats</h2>
+                            {/* Barre de recherche */}
+                            <input
+                                type="text"
+                                placeholder="Rechercher une certification..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="block w-full mb-4 px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                             <table className="w-full border-collapse border border-gray-300">
                                 <thead className="bg-gray-200">
                                     <tr>
@@ -96,7 +122,7 @@ export default function Certification() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {results.map((f, i) => (
+                                    {filteredResults.map((f, i) => (
                                         <tr key={i} className="hover:bg-gray-100">
                                             <td className="border border-gray-300 px-4 py-2">{i + 1}</td>
                                             <td className="border border-gray-300 px-4 py-2">{f.original_name}</td>
@@ -112,13 +138,20 @@ export default function Certification() {
                                                 </a>
 
                                                 <a
-                                                    href={`http://localhost:8000/storage/${f.processed_path}`}
+                                                    href={`http://localhost:8000/api/download-file/${f.reference_number}`}
                                                     target="_blank"
                                                     download={f.original_name}
                                                     className="ml-4 text-blue-500 underline"
                                                 >
                                                     Télécharger
                                                 </a>
+
+                                                <button
+                                                    onClick={() => handleDelete(f.reference_number)}
+                                                    className="ml-4 text-red-500 hover:text-red-700"
+                                                >
+                                                    Supprimer
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

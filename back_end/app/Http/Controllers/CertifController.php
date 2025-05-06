@@ -31,7 +31,7 @@ class CertifController extends Controller
                 $referenceNumber = 'REF-' . uniqid();
 
                 // Generate QR Code
-                $qrCodeUrl = route('ref.show', ['reference_number' => $referenceNumber]);
+                $qrCodeUrl = 'http://localhost:5174/qrcode/'.$referenceNumber;
                 $qrCode = new Builder(
                     writer:new PngWriter(),
                     data: $qrCodeUrl,
@@ -209,5 +209,39 @@ class CertifController extends Controller
         }
 
         return response()->download($filePath, $certificate->original_name);
+    }
+
+    public function delete($reference_number)
+    {
+        $certificate = Certif::where('reference_number', $reference_number)->first();
+
+        if (!$certificate) {
+            return response()->json([
+                'message' => 'Certificat non trouvé',
+                'error' => 'Not Found'
+            ], 404);
+        }
+
+        // Supprimer le fichier du stockage
+        $filePath = storage_path('app/public/' . $certificate->processed_path);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Supprimer l'image associée si elle existe
+        if ($certificate->image_path) {
+            $imagePath = storage_path('app/public/' . $certificate->image_path);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Supprimer l'enregistrement de la base de données
+        $certificate->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Certificat supprimé avec succès'
+        ]);
     }
 }

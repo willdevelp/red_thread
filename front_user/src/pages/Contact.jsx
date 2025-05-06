@@ -91,35 +91,39 @@ export default function Contact() {
           <div className="space-y-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-700">
-                Comment puis-je importer un fichier PDF ?
+                Comment fonctionne la vérification des certificats ?
               </h3>
               <p className="text-gray-600">
-                Vous pouvez importer un fichier PDF en utilisant le formulaire d'importation sur la page principale. Cliquez sur "Ajouter" pour sélectionner vos fichiers.
+                Chaque certificat est doté d'un QR code unique qui permet de vérifier instantanément son authenticité. 
+                Il suffit de scanner le QR code avec votre smartphone pour accéder aux informations du certificat.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-700">
-                Où puis-je trouver mes fichiers traités ?
+                Comment puis-je vérifier l'authenticité d'un certificat ?
               </h3>
               <p className="text-gray-600">
-                Une fois vos fichiers traités, vous pouvez les télécharger depuis la section "Résultats" sur la page principale.
+                Vous pouvez vérifier l'authenticité d'un certificat de deux façons : en scannant le QR code 
+                présent sur le document ou en entrant le numéro de référence unique dans notre système de vérification.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-700">
-                Comment puis-je supprimer un fichier ?
+                Les certificats sont-ils sécurisés ?
               </h3>
               <p className="text-gray-600">
-                Vous pouvez supprimer un fichier en cliquant sur le bouton "Supprimer" à côté du fichier dans la liste des résultats.
+                Oui, tous les certificats sont stockés de manière sécurisée et cryptée. Chaque document 
+                possède un identifiant unique et ne peut être modifié une fois enregistré dans notre système.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-700">
-                Qui puis-je contacter pour obtenir de l'aide ?
+                Comment puis-je obtenir de l'aide supplémentaire ?
               </h3>
               <p className="text-gray-600">
-                Vous pouvez nous contacter via ce formulaire ou envoyer un email à 
-                <a href="mailto:support@certifsure.com" className="text-blue-500 underline"> support@certifsure.com</a>.
+                Notre équipe de support est disponible pour vous aider. Vous pouvez nous contacter via ce formulaire, 
+                par email à <a href="mailto:support@certifsure.com" className="text-blue-500 underline">support@certifsure.com</a>, 
+                ou par téléphone au +33 1 23 45 67 89.
               </p>
             </div>
           </div>

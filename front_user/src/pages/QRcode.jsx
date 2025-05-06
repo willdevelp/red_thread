@@ -14,6 +14,7 @@ function QRcode() {
     const handleScan = async (referenceNumber) => {
         try {
             const cleanedReferenceNumber = referenceNumber.trim(); // Supprimer les espaces
+            console.log(cleanedReferenceNumber);
             const response = await axios.post('http://localhost:8000/api/handle-scan', {
                 reference_number: cleanedReferenceNumber,
             });
@@ -21,7 +22,7 @@ function QRcode() {
             if (response.data.success) {
                 // Rediriger vers la page front-end avec les informations du certificat
                 navigate('/certificate-result', {
-                    state: { referenceNumber, certificate: response.data.certificate },
+                    state: { certificate: response.data },
                 });
             } else {
                 setError(response.data.message || 'Erreur lors du scan');

@@ -7,29 +7,38 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getAuthenticatedUser(Request $request)
+    public function getAuthenticatedUser()
     {
-        return response()->json([
-            'success' => true,
-            'user' => $request->user(), // Récupère l'utilisateur connecté
-        ]);
+        $user = Auth::user();
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     public function updateUser(Request $request)
     {
         $user = Auth::user();
 
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validatedData = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'email' => 'sometimes|email|unique:users,email,' . $user->id,
+            'phone' => 'sometimes|phone',
+            'password' => 'sometimes|string|min:8|confirmed',
         ]);
 
-        $user->name = $request->input('name');
-        $user->save();
+        if (isset($validatedData['password'])) {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Informations mises à jour avec succès',
-            'user' => $user,
-        ]);
+        $user->update($validatedData);
+
+        return response()->json(['success' => true, 'message' => 'Profil mis à jour avec succès', 'data' => $user], 200);
+    }
+
+    // Supprimer le profil utilisateur
+    public function deleteProfile()
+    {
+        $user = Auth::user();
+        $user->delete();
+
+        return response()->json(['success' => true, 'message' => 'Profil supprimé avec succès'], 200);
     }
 }
